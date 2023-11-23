@@ -13,10 +13,10 @@ abstract class IHomeRepository {
 }
 
 class HomeRepository implements IHomeRepository {
-  @override
   final HomeRemoteDataSource dataSource;
 
   HomeRepository(this.dataSource);
+  @override
   Future<List<Product>> getAll() {
     return dataSource.getAll();
   }

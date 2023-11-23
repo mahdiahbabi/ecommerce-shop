@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
+
 import 'package:ecommerce_shop/data/repo/home_repo.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 import '../../../data/product.dart';
 import '../../../utitlity/appexception.dart';
@@ -17,7 +18,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeEvent>((event, emit) async {
       if (event is HomeStarted) {
         emit(HomeLoading());
-        Future.delayed(Duration(seconds: 2));
+        //TODO we should remove this duration
+        Future.delayed(const Duration(seconds: 1));
         try {
           var resualt = await homeRepository.getAll();
           emit(HomeSuccess(resualt));

@@ -10,16 +10,15 @@ abstract class IHomeDataSource {
 }
 
 class HomeRemoteDataSource implements IHomeDataSource {
-  @override
   final Dio httpClient;
 
   HomeRemoteDataSource(this.httpClient);
 
+  @override
   Future<List<Product>> getAll() async {
     final response = await httpClient.get('products');
     List<Product> allProduct = [];
     ValidatorResponse(response);
-    print(response.data);
       if (response.data is List) {
         for(var element in response.data){
           allProduct.add(Product.fromjson(element));
