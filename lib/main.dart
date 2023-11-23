@@ -15,6 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        textButtonTheme: const TextButtonThemeData(
+          style: ButtonStyle(
+            textStyle: MaterialStatePropertyAll(TextStyle(color: Color.fromARGB(255, 143, 149, 158))),
+            // backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 63, 125, 218))
+          )
+        ),
         textTheme: const TextTheme(
             titleLarge: TextStyle(
               fontSize: 28,
@@ -26,7 +32,7 @@ class MyApp extends StatelessWidget {
               color: LightColor.captionTextColor,
             )),
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.black, background: LightColor.backgroundColor),
+            seedColor: Colors.black, background: LightColor.backgroundColor, secondary: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomeScreen(),
