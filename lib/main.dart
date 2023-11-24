@@ -27,6 +27,11 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: LightColor.titleTextColor,
             ),
+            bodyMedium: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Color.fromARGB(255, 29, 30, 32)
+            ),
             bodySmall: TextStyle(
               fontSize: 15,
               color: LightColor.captionTextColor,
