@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/product.dart';
 import '../../widget.dart/app_bar_icon.dart';
+import '../../widget.dart/image_loading_servise.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +30,25 @@ class _HomeScreenState extends State<HomeScreen> {
         return homeBloc;
       },
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(
+            label: 'Home',
+            icon: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.home),
+            ),
+          ),
+          BottomNavigationBarItem(
+              label: 'Cart',
+              icon: IconButton(
+                  onPressed: () {
+                    print('dark lord');
+                  },
+                  icon: Icon(Icons.card_travel))),
+          BottomNavigationBarItem(
+              label: 'Profile',
+              icon: IconButton(onPressed: () {}, icon: Icon(Icons.person_2)))
+        ]),
         appBar: AppBar(
           actions: [
             const SizedBox(
@@ -197,7 +217,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     border: Border.all(
                                         width: 1, color: Colors.black38),
                                     borderRadius: BorderRadius.circular(35),
-                                    color: Color.fromARGB(15, 143, 149, 155),
+                                    color:
+                                        const Color.fromARGB(15, 143, 149, 155),
                                   ),
                                   child: Column(
                                     crossAxisAlignment:
@@ -205,19 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(35),
-                                        child: CachedNetworkImage(
-                                          imageUrl: product.categoryImage,
-                                          height: 200,
-                                          width: 200,
-                                          fit: BoxFit.fill,
-                                          placeholder: (context, url) {
-                                            return const CircularProgressIndicator();
-                                          },
-                                          errorWidget: (context, url, error) {
-                                            return const Icon(
-                                                Icons.face_2_sharp);
-                                          },
-                                        ),
+                                        child: ImageLoadingService(
+                                            product: product),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -231,6 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
+                                          maxLines: 1,
                                         ),
                                       ),
                                       const SizedBox(
@@ -244,10 +255,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
+                                          maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Padding(
@@ -258,6 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
+                                          maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
@@ -269,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height / 7,
+                          height: MediaQuery.of(context).size.height / 5,
                         ),
                       ]),
                 );
