@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Product product = state.allProduct[index];
                               final String image = state.allProduct[index].images[index = 0];
                               return InkWell(
-                                onTap: () => Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ProductScreen(product: product),)),
+                                onTap: () => Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ProductScreen(productDetail: product),)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
