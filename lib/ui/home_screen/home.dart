@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_shop/data/repo/home_repo.dart';
 import 'package:ecommerce_shop/ui/home_screen/bloc/home_bloc.dart';
+import 'package:ecommerce_shop/ui/product/product.dart';
 import 'package:ecommerce_shop/utitlity/string.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/product.dart';
@@ -210,71 +212,75 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             itemBuilder: (context, index) {
                               Product product = state.allProduct[index];
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1, color: Colors.black38),
-                                    borderRadius: BorderRadius.circular(35),
-                                    color:
-                                        const Color.fromARGB(15, 143, 149, 155),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(35),
-                                        child: ImageLoadingService(
-                                            product: product),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: Text(
-                                          product.title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium,
-                                          maxLines: 1,
+                              final String image = state.allProduct[index].images[index = 0];
+                              return InkWell(
+                                onTap: () => Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ProductScreen(product: product),)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1, color: Colors.black38),
+                                      borderRadius: BorderRadius.circular(35),
+                                      color:
+                                          const Color.fromARGB(15, 143, 149, 155),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(35),
+                                          child: ImageLoadingService(
+                                              image: image, boxFit: BoxFit.fill,),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: Text(
-                                          product.description,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
+                                        const SizedBox(
+                                          height: 5,
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: Text(
-                                          "${product.price.toString()} \$",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
+                                          child: Text(
+                                            product.title,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                            maxLines: 1,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
+                                          child: Text(
+                                            product.description,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
+                                          child: Text(
+                                            "${product.price.toString()} \$",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );

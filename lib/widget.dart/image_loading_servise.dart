@@ -7,19 +7,20 @@ import '../data/product.dart';
 
 class ImageLoadingService extends StatelessWidget {
   const ImageLoadingService({
-    super.key,
-    required this.product,
+    super.key, required this.image, required this.boxFit,
+   
   });
 
-  final Product product;
+  final String image;
+  final BoxFit boxFit;
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: product.categoryImage,
+      imageUrl: image,
       height: 200,
       width: 200,
-      fit: BoxFit.fill,
+      fit: boxFit,
       placeholder: (context, url) {
         return const CircularProgressIndicator();
       },
