@@ -42,6 +42,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height / 3,
                     child: ImageLoadingService(
+                      height: 200,width: 200,
                       image: widget.productDetail.images[selectedIndex],
                       boxFit: BoxFit.fill,
                     )),
@@ -140,6 +141,8 @@ class _ProductScreenState extends State<ProductScreen> {
                             borderRadius: BorderRadius.circular(
                                 selectedIndex == index ? 50 : 25),
                             child: ImageLoadingService(
+                              width: 200,
+                              height: 200,
                               image: image,
                               boxFit: BoxFit.fill,
                             )),

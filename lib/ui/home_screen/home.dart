@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_shop/data/repo/home_repo.dart';
+import 'package:ecommerce_shop/ui/cart/cart.dart';
 import 'package:ecommerce_shop/ui/home_screen/bloc/home_bloc.dart';
 import 'package:ecommerce_shop/ui/product/product.dart';
 import 'package:ecommerce_shop/utitlity/string.dart';
@@ -32,25 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return homeBloc;
       },
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(items: [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.home),
-            ),
-          ),
-          BottomNavigationBarItem(
-              label: 'Cart',
-              icon: IconButton(
-                  onPressed: () {
-                    print('dark lord');
-                  },
-                  icon: Icon(Icons.card_travel))),
-          BottomNavigationBarItem(
-              label: 'Profile',
-              icon: IconButton(onPressed: () {}, icon: Icon(Icons.person_2)))
-        ]),
+      
         appBar: AppBar(
           actions: [
             const SizedBox(
@@ -170,10 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
 
-
                         // categories sectopn
-
-
 
                         Padding(
                           padding: EdgeInsets.fromLTRB(
@@ -181,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Container(
                             width: withOfScreen,
                             height: 60,
-                            color: Colors.amber,
+                            // color: Colors.amber,
                             child: ListView.builder(
                               //TODO: completer data source for give categories and complete this section
                               scrollDirection: Axis.horizontal,
@@ -190,11 +170,34 @@ class _HomeScreenState extends State<HomeScreen> {
                               itemBuilder: (context, index) {
                                 final item = state.allCategories[index];
                                 return Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color:  const Color.fromRGBO(176, 182, 205, 0.612),
+                                  ),
                                   margin: const EdgeInsets.only(left: 10),
-                                  color: Colors.red,
-                                  width: 115,
+                                 
+                                  width: 175,
                                   height: 50,
-                                  child: ImageLoadingService(image: item.image, boxFit: BoxFit.cover),
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: ImageLoadingService(
+                                              image: item.image,
+                                              boxFit: BoxFit.cover,
+                                              height: 60,
+                                              width: 55)),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        state.allCategories[index].name,
+                                        overflow: TextOverflow.clip,
+                                        maxLines: 1,
+                                      )
+                                    ],
+                                  ),
                                 );
                               },
                             ),
@@ -220,9 +223,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             itemBuilder: (context, index) {
                               Product product = state.allProduct[index];
-                              final String image = state.allProduct[index].images[index = 0];
+                              final String image =
+                                  state.allProduct[index].images[index = 0];
                               return InkWell(
-                                onTap: () => Navigator.of(context).push(CupertinoPageRoute(builder: (context) => ProductScreen(productDetail: product),)),
+                                onTap: () => Navigator.of(context)
+                                    .push(CupertinoPageRoute(
+                                  builder: (context) =>
+                                      ProductScreen(productDetail: product),
+                                )),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
@@ -230,18 +238,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                       border: Border.all(
                                           width: 1, color: Colors.black38),
                                       borderRadius: BorderRadius.circular(35),
-                                      color:
-                                          const Color.fromARGB(15, 143, 149, 155),
+                                      color: const Color.fromARGB(
+                                          15, 143, 149, 155),
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(35),
-                                          child: ImageLoadingService(
-                                              image: image, boxFit: BoxFit.fill,),
-                                        ),
+                                            borderRadius:
+                                                BorderRadius.circular(35),
+                                            child: ImageLoadingService(
+                                              image: image,
+                                              boxFit: BoxFit.fill,
+                                              height: 200,
+                                              width: 200,
+                                            )),
                                         const SizedBox(
                                           height: 5,
                                         ),

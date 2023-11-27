@@ -1,3 +1,4 @@
+import 'package:ecommerce_shop/mainwarpper.dart';
 import 'package:ecommerce_shop/theme/theme.dart';
 import 'package:ecommerce_shop/ui/home_screen/home.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        
         textButtonTheme: const TextButtonThemeData(
           style: ButtonStyle(
             textStyle: MaterialStatePropertyAll(TextStyle(color: Color.fromARGB(255, 143, 149, 158))),
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
             seedColor: Colors.black, background: LightColor.backgroundColor, secondary: Colors.blue),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home:  MainWarpper(),
     );
   }
 }
