@@ -2,13 +2,15 @@ import 'package:ecommerce_shop/data/data_source/home_data_source.dart';
 import 'package:ecommerce_shop/data/product.dart';
 import 'package:ecommerce_shop/utitlity/httpcilent.dart';
 
+import '../categories.dart';
+
 
 final homeRepository = HomeRepository(HomeRemoteDataSource(httpClient));
 
 
 abstract class IHomeRepository {
   Future<List<Product>> getAll();
-
+ Future<List<Categories>> getCategories();
   Future<Product> getOne(int id);
 }
 
@@ -26,4 +28,8 @@ class HomeRepository implements IHomeRepository {
     // TODO: implement getOne
     throw UnimplementedError();
   }
+  
+  
+  @override
+  Future<List<Categories>> getCategories() => dataSource.getCategories();
 }

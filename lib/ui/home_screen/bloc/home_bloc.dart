@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 
+import 'package:ecommerce_shop/data/categories.dart';
 import 'package:ecommerce_shop/data/repo/home_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         Future.delayed(const Duration(seconds: 1));
         try {
           var resualt = await homeRepository.getAll();
-          emit(HomeSuccess(resualt));
+          var resualtCategory = await homeRepository.getCategories();
+          emit(HomeSuccess(resualt , resualtCategory));
         } catch (e) {
           log(e.toString());
           emit(HomeEror(AppException('please check your network connection ')));

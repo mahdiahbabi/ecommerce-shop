@@ -10,8 +10,9 @@ class HomeLoading extends HomeState{}
 
 class HomeSuccess extends HomeState{
   final List<Product> allProduct ;
+  final List<Categories> allCategories ;
 
-  HomeSuccess(this.allProduct); 
+  HomeSuccess(this.allProduct, this.allCategories); 
 }
 
 class HomeEror extends HomeState{

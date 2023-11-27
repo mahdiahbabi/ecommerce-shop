@@ -169,6 +169,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
+
+
+                        // categories sectopn
+
+
+
                         Padding(
                           padding: EdgeInsets.fromLTRB(
                               paddingSize + 5, 5, paddingSize + 5, 5),
@@ -179,14 +185,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ListView.builder(
                               //TODO: completer data source for give categories and complete this section
                               scrollDirection: Axis.horizontal,
-                              itemCount: 10,
+                              itemCount: state.allCategories.length,
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
+                                final item = state.allCategories[index];
                                 return Container(
                                   margin: const EdgeInsets.only(left: 10),
                                   color: Colors.red,
                                   width: 115,
                                   height: 50,
+                                  child: ImageLoadingService(image: item.image, boxFit: BoxFit.cover),
                                 );
                               },
                             ),
