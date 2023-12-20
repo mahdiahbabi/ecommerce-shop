@@ -9,8 +9,8 @@ final class AuthInitial extends AuthState {}
 class AuthSuccess extends AuthState{
   final String accessToken;
   final String refreshToken;
-
-  AuthSuccess(this.accessToken, this.refreshToken);
+  final String message;
+  AuthSuccess(this.accessToken, this.refreshToken, this.message);
 }
 
 class AuthEror extends AuthState{

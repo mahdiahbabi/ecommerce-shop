@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             final authTokens = Auth.fromjson(resualt.data);
             final accessToken = authTokens.accessToken;
             final refreshToken = authTokens.refreshToken;
-            emit(AuthSuccess(accessToken, refreshToken));
+            emit(AuthSuccess(accessToken, refreshToken, 'success login'));
           } else if(event is BottonClicked && event.loginMode == 0) {
             final resualt = await httpClient.post('users/', data: {
               "name": event.name,
@@ -33,7 +33,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             final authTokens = Auth.fromjson(resualt.data);
             final accessToken = authTokens.accessToken;
             final refreshToken = authTokens.refreshToken;
-            emit(AuthSuccess(accessToken, refreshToken));
+            emit(AuthSuccess(accessToken, refreshToken, 'success sign up'));
           }
         } catch (e) {
           emit(AuthEror(AppException('unknown eror')));

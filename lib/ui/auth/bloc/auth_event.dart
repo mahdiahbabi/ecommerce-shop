@@ -21,6 +21,6 @@ class BottonClicked extends AuthEvent {
 
    int loginMode;
 
-  BottonClicked(this.userName, this.password, this.loginMode, this.name, this.email);
+  BottonClicked({ required this.userName,required this.password,required this.loginMode, this.name, this.email});
 }
 
