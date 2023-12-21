@@ -4,9 +4,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'data.g.dart';
 
 @HiveType(typeId: 0)
-class AuthD {
+class Data  extends HiveObject{
   @HiveField(0)
-  String accessToken = '';
+  final String accessToken ;
   @HiveField(1)
-  String refreshtoken = '';
+ final String refreshtoken ;
+ 
+
+  Data(this.accessToken, this.refreshtoken);
 }

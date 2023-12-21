@@ -1,16 +1,16 @@
+import 'package:ecommerce_shop/data_base/data.dart';
 import 'package:ecommerce_shop/mainwarpper.dart';
 import 'package:ecommerce_shop/theme/theme.dart';
 import 'package:ecommerce_shop/ui/auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-
-import 'data_base/auth.dart';
 
 void main() async {
  await Hive.initFlutter(); 
-await Hive.openBox<AuthD>('auth');
+  Hive.registerAdapter(DataAdapter());
+await Hive.openBox<Data>('auth');
   runApp(const MyApp());
 }
 

@@ -17,7 +17,7 @@ class CartDtatXource  implements ICartDataSource{
   CartDtatXource(this.httpClient);
   @override
   Future<void> checkSesionIsValid() {
-   return httpClient.get(path)
+   return httpClient.get('');
   }
 
 
