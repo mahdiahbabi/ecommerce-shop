@@ -1,6 +1,8 @@
+import 'package:ecommerce_shop/data_base/productdata.dart';
 import 'package:ecommerce_shop/widget.dart/image_loading_servise.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import '../../data/product.dart';
 
@@ -13,12 +15,26 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  var box = Hive.box<ProductData>('product');
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () async {
+          ProductData productData = ProductData(
+              widget.productDetail.id,
+              widget.productDetail.title,
+              widget.productDetail.price,
+              widget.productDetail.description,
+              widget.productDetail.images,
+              widget.productDetail.categoryId,
+              widget.productDetail.categoryName,
+              widget.productDetail.categoryImage,
+              1,
+              );
+          await box.add(productData);
+        },
         label: const Text('Add To Cart'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
