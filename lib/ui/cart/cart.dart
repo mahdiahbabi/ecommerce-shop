@@ -21,8 +21,37 @@ if (state is CartCheckOytSuccess) {
       return cartBloc;
     },
     child: Scaffold(
-      body: SafeArea(child: 
-      
+      body: BlocBuilder<CartBloc, CartState>(
+        buildWhen: (previous, current) {
+          return current is CartEror||
+          current is CartSuccess ;
+        },
+        builder: (context, state) { 
+          return SafeArea(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back)),
+                    Text('Cart'),
+                    SizedBox(width: 10,),
+                  ],
+                ),
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height/3,
+                  color:  Colors.black,
+                  child: ListView.builder(
+                    itemCount: ,
+                    itemBuilder: (context, index) {
+                    
+                  },),
+                )
+              ],
+            )
+          
+            );
+        },
       ),
     ),
     );
