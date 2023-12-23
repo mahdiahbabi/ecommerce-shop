@@ -1,3 +1,4 @@
+import 'package:ecommerce_shop/data/data_source/auth_data_source.dart';
 import 'package:ecommerce_shop/data_base/data.dart';
 import 'package:ecommerce_shop/data_base/productdata.dart';
 import 'package:ecommerce_shop/mainwarpper.dart';
@@ -52,6 +53,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: 
+      box.values.toList().isNotEmpty ? MainWarpper()
+      :
       // MainWarpper(),
        AuthScreen()
       // MainWarpper(),

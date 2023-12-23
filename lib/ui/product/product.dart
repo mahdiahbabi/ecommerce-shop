@@ -34,6 +34,7 @@ class _ProductScreenState extends State<ProductScreen> {
               1,
               );
           await box.add(productData);
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('success add to cart')));
         },
         label: const Text('Add To Cart'),
       ),
