@@ -31,7 +31,7 @@ class CartScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         body: BlocBuilder<CartBloc, CartState>(
           buildWhen: (previous, current) {
-            return current is CartEror || current is CartSuccess;
+            return current is  CartSuccess;
           },
           builder: (context, state) {
             return SafeArea(
@@ -129,7 +129,7 @@ class CartScreen extends StatelessWidget {
                                      CartBloc().add(ItemDelete(index));
 
                                     },
-                                    icon: Icon(Icons.delete)),
+                                    icon: const Icon(Icons.delete)),
                               ],
                             )),
                       );

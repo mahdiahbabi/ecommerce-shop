@@ -10,7 +10,7 @@ part 'cart_event.dart';
 part 'cart_state.dart';
 
 var box = Hive.box<Data>('auth');
-var boxProduct = Hive.box<ProductData>('product');
+var productBox = Hive.box<ProductData>('product');
 
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartInitial()) {
@@ -24,9 +24,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           }
         } else if (event is CartIncreaseDecreseButton) {
           emit(CartLoading());
-          var boxProductv = boxProduct.values.toList()[event.index];
+          var boxProductv = productBox.values.toList()[event.index];
           boxProductv.amount += event.value;
-          boxProduct.putAt(event.index, boxProductv);
+          productBox.putAt(event.index, boxProductv);
+          emit(CartSuccess());
+        }if (event is ItemDelete) {
+          productBox.deleteAt(event.index);
           emit(CartSuccess());
         }
       } catch (e) {
