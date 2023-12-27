@@ -15,9 +15,8 @@ var productBox = Hive.box<ProductData>('product');
 class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartInitial()) {
     on<CartEvent>((event, emit) async {
-      var boxList = box.values.toList();
-
       try {
+         var boxList = box.values.toList();
         if (event is CheckOutButton) {
           if (boxList.first.accessToken.isNotEmpty) {
             emit(CartCheckOytSuccess());
@@ -26,10 +25,24 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(CartLoading());
           var boxProductv = productBox.values.toList()[event.index];
           boxProductv.amount += event.value;
-          productBox.putAt(event.index, boxProductv);
+          await productBox.putAt(event.index, boxProductv);
           emit(CartSuccess());
-        }if (event is ItemDelete) {
-          productBox.deleteAt(event.index);
+        } else if (event is ItemDelete) {
+          emit(CartLoading());
+          await productBox.deleteAt(event.index);
+          emit(CartSuccess());
+        } else if (event is CartIncreaseDecreseButton) {
+          emit(CartLoading());
+          var value = productBox.values.toList()[event.index];
+          value.amount += 1;
+          await productBox.putAt(event.index, value);
+          emit(CartSuccess());
+        }
+        if (event is CartDecreaseDecreseButton) {
+          emit(CartLoading());
+          var value = productBox.values.toList()[event.index];
+          value.amount -= 1;
+          await productBox.putAt(event.index, value);
           emit(CartSuccess());
         }
       } catch (e) {

@@ -3,56 +3,78 @@ import 'package:ecommerce_shop/ui/home_screen/home.dart';
 import 'package:ecommerce_shop/ui/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-final myList = [HomeScreen(), CartScreen(), ProfileScreen()];
+
+final myList = [const HomeScreen(), const CartScreen(), ProfileScreen()];
+
 class MainWarpper extends StatefulWidget {
   @override
   State<MainWarpper> createState() => _MainWarpperState();
 }
 
 class _MainWarpperState extends State<MainWarpper> {
-  
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          label: 'Home',
-          icon: IconButton(
-            onPressed: () {
-              setState(() {
-                 selectedIndex = 0;
-              });
-             
-            },
-            icon: const Icon(Icons.home),
-          ),
-        ),
-        BottomNavigationBarItem(
-            label: 'Cart',
-            icon: IconButton(
-                onPressed: () {
+      bottomNavigationBar: Container(
+        height: MediaQuery.of(context).size.height * 0.09,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 0;
+                  });
+                },
+                child: const Column(
+                  children: [
+                    Icon(Icons.home),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text('Home'),
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {
                   setState(() {
                     selectedIndex = 1;
                   });
-
-                  // Navigator.of(context).push(CupertinoPageRoute(
-                  //   builder: (context) => CartScreen(),
-                  // ));
-                  // print('dark lord');
                 },
-                icon: const Icon(Icons.card_travel))),
-        BottomNavigationBarItem(
-            label: 'Profile',
-            icon: IconButton(
-                onPressed: () {
+                child: const Column(
+                  children: [
+                    Icon(Icons.card_travel),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text('Cart'),
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {
                   setState(() {
                     selectedIndex = 2;
                   });
-                  
                 },
-                icon: const Icon(Icons.person_2)))
-      ]),
+                child: const Column(
+                  children: [
+                    Icon(Icons.person_2),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text('Profile'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -65,19 +87,18 @@ class _MainWarpperState extends State<MainWarpper> {
   }
 }
 
-
-Widget selectableIndex(int selectedIndex){
-   switch (selectedIndex) {
-     case 0:
-       return myList[0];
-       break;
-     case 1: 
-     return myList[1];
-       break;
-     case 2 : 
-     return myList[2]; 
-          break;  
-     default: 
-     return  myList[0];
-   }
+Widget selectableIndex(int selectedIndex) {
+  switch (selectedIndex) {
+    case 0:
+      return myList[0];
+      break;
+    case 1:
+      return myList[1];
+      break;
+    case 2:
+      return myList[2];
+      break;
+    default:
+      return myList[0];
+  }
 }

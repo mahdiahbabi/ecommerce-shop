@@ -52,6 +52,7 @@ class MyApp extends StatelessWidget {
             secondary: Colors.blue),
         useMaterial3: true,
       ),
+      debugShowCheckedModeBanner: false,
       home: 
       box.values.toList().isNotEmpty ? MainWarpper()
       :

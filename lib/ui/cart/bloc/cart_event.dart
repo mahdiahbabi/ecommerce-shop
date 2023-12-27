@@ -21,3 +21,14 @@ final int value;
   
 
 }
+
+
+final class CartDecreaseDecreseButton extends CartEvent{
+final int index ;
+final int value;
+
+  CartDecreaseDecreseButton(this.index, this.value);
+
+  
+
+}

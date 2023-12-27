@@ -1,3 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:developer';
+
 import 'package:ecommerce_shop/data_base/productdata.dart';
 import 'package:ecommerce_shop/widget.dart/image_loading_servise.dart';
 import 'package:expandable_text/expandable_text.dart';
@@ -23,6 +27,22 @@ class _ProductScreenState extends State<ProductScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           ProductData productData = ProductData(
+            widget.productDetail.id,
+            widget.productDetail.title,
+            widget.productDetail.price,
+            widget.productDetail.description,
+            widget.productDetail.images,
+            widget.productDetail.categoryId,
+            widget.productDetail.categoryName,
+            widget.productDetail.categoryImage,
+            1,
+          );
+          if (box.values.any((element) => element.id == productData.id)) {
+              var exsistingproducts = box.values.firstWhere(
+            (element) => productData.id == element.id,
+            
+          );
+             ProductData productDataUpdate = ProductData(
               widget.productDetail.id,
               widget.productDetail.title,
               widget.productDetail.price,
@@ -31,10 +51,16 @@ class _ProductScreenState extends State<ProductScreen> {
               widget.productDetail.categoryId,
               widget.productDetail.categoryName,
               widget.productDetail.categoryImage,
-              1,
-              );
-          await box.add(productData);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('success add to cart')));
+              exsistingproducts.amount + 1,
+            );
+  await box.put(exsistingproducts.key, productDataUpdate);
+          }else{
+ await box.add(productData);
+          }
+
+
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('success add to cart')));
         },
         label: const Text('Add To Cart'),
       ),
