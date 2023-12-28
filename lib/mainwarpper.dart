@@ -24,98 +24,41 @@ class _MainWarpperState extends State<MainWarpper> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               //TODO : implement selectable color
-              InkWell(
-                customBorder: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(30.0), // تنظیم border radius
-                ),
+              InkWellItem(
+                iconData: Icons.home,
+                label: 'Home',
+                isSelected: selectedIndex == 0,
                 onTap: () {
                   setState(() {
                     selectedIndex = 0;
                   });
                 },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.home,
-                      color:
-                          selectedIndex == 0 ? Colors.blueAccent : Colors.black,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Home',
-                      style: TextStyle(
-                        color: selectedIndex == 0
-                            ? Colors.blueAccent
-                            : Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(
                 width: 5,
               ),
-              InkWell(
-                customBorder: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(30.0), // تنظیم border radius
-                ),
+              InkWellItem(
+                iconData: Icons.card_travel,
+                label: 'Cart',
+                isSelected: selectedIndex == 1,
                 onTap: () {
                   setState(() {
                     selectedIndex = 1;
                   });
                 },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.card_travel,
-                      color:
-                          selectedIndex == 1 ? Colors.blueAccent : Colors.black,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text('Cart',
-                        style: TextStyle(
-                            color: selectedIndex == 1
-                                ? Colors.blueAccent
-                                : Colors.black)),
-                  ],
-                ),
               ),
               const SizedBox(
                 width: 5,
               ),
-              InkWell(
-                customBorder: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(30.0), // تنظیم border radius
-                ),
+              InkWellItem(
+                iconData: Icons.person_2,
+                label: 'Profile',
+                isSelected: selectedIndex == 2,
                 onTap: () {
                   setState(() {
                     selectedIndex = 2;
                   });
                 },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.person_2,
-                      color:
-                          selectedIndex == 2 ? Colors.blueAccent : Colors.black,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text('Profile',
-                        style: TextStyle(
-                            color: selectedIndex == 2
-                                ? Colors.blueAccent
-                                : Colors.black)),
-                  ],
-                ),
               ),
             ],
           ),
@@ -146,5 +89,50 @@ Widget selectableIndex(int selectedIndex) {
       break;
     default:
       return myList[0];
+  }
+}
+
+class InkWellItem extends StatefulWidget {
+  final IconData iconData;
+  final String label;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const InkWellItem({
+    Key? key,
+    required this.iconData,
+    required this.label,
+    required this.isSelected,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  _InkWellItemState createState() => _InkWellItemState();
+}
+
+class _InkWellItemState extends State<InkWellItem> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      onTap: widget.onTap,
+      child: Column(
+        children: [
+          Icon(
+            widget.iconData,
+            color: widget.isSelected ? Colors.blueAccent : Colors.black,
+          ),
+          SizedBox(height: 5),
+          Text(
+            widget.label,
+            style: TextStyle(
+              color: widget.isSelected ? Colors.blueAccent : Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
