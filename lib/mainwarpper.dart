@@ -23,51 +23,97 @@ class _MainWarpperState extends State<MainWarpper> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              //TODO : implement selectable color
               InkWell(
+                customBorder: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(30.0), // تنظیم border radius
+                ),
                 onTap: () {
                   setState(() {
                     selectedIndex = 0;
                   });
                 },
-                child: const Column(
+                child: Column(
                   children: [
-                    Icon(Icons.home),
-                    SizedBox(
+                    Icon(
+                      Icons.home,
+                      color:
+                          selectedIndex == 0 ? Colors.blueAccent : Colors.black,
+                    ),
+                    const SizedBox(
                       height: 5,
                     ),
-                    Text('Home'),
+                    Text(
+                      'Home',
+                      style: TextStyle(
+                        color: selectedIndex == 0
+                            ? Colors.blueAccent
+                            : Colors.black,
+                      ),
+                    ),
                   ],
                 ),
               ),
+              const SizedBox(
+                width: 5,
+              ),
               InkWell(
+                customBorder: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(30.0), // تنظیم border radius
+                ),
                 onTap: () {
                   setState(() {
                     selectedIndex = 1;
                   });
                 },
-                child: const Column(
+                child: Column(
                   children: [
-                    Icon(Icons.card_travel),
-                    SizedBox(
+                    Icon(
+                      Icons.card_travel,
+                      color:
+                          selectedIndex == 1 ? Colors.blueAccent : Colors.black,
+                    ),
+                    const SizedBox(
                       height: 5,
                     ),
-                    Text('Cart'),
+                    Text('Cart',
+                        style: TextStyle(
+                            color: selectedIndex == 1
+                                ? Colors.blueAccent
+                                : Colors.black)),
                   ],
                 ),
               ),
+              const SizedBox(
+                width: 5,
+              ),
               InkWell(
+                customBorder: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(30.0), // تنظیم border radius
+                ),
                 onTap: () {
                   setState(() {
                     selectedIndex = 2;
                   });
                 },
-                child: const Column(
+                child: Column(
                   children: [
-                    Icon(Icons.person_2),
-                    SizedBox(
+                    Icon(
+                      Icons.person_2,
+                      color:
+                          selectedIndex == 2 ? Colors.blueAccent : Colors.black,
+                    ),
+                    const SizedBox(
                       height: 5,
                     ),
-                    Text('Profile'),
+                    Text('Profile',
+                        style: TextStyle(
+                            color: selectedIndex == 2
+                                ? Colors.blueAccent
+                                : Colors.black)),
                   ],
                 ),
               ),

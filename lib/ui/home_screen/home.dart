@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
         return homeBloc;
       },
       child: Scaffold(
-      
         appBar: AppBar(
           actions: [
             const SizedBox(
@@ -74,22 +73,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         // welcom section
                         Padding(
                           padding: const EdgeInsets.only(left: 20, top: 10),
-                          child: Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Mahdi',
-                                  style: Theme.of(context).textTheme.titleLarge,
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Text('welcome to stylish app',
-                                    style:
-                                        Theme.of(context).textTheme.bodySmall),
-                              ],
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Mahdi',
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Text('welcome to stylish app',
+                                  style:
+                                      Theme.of(context).textTheme.bodySmall),
+                            ],
                           ),
                         ),
 
@@ -172,10 +169,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 return Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    color:  const Color.fromRGBO(176, 182, 205, 0.612),
+                                    color: const Color.fromRGBO(
+                                        176, 182, 205, 0.612),
                                   ),
                                   margin: const EdgeInsets.only(left: 10),
-                                 
                                   width: 175,
                                   height: 50,
                                   child: Row(
@@ -188,13 +185,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                               boxFit: BoxFit.cover,
                                               height: 60,
                                               width: 55)),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Text(
-                                        state.allCategories[index].name,
-                                        overflow: TextOverflow.clip,
-                                        maxLines: 1,
+                                      SizedBox(
+                                        width: 110,
+                                        child: Text(
+                                          state.allCategories[index].name,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       )
                                     ],
                                   ),
