@@ -1,6 +1,7 @@
 import 'package:ecommerce_shop/ui/cart/cart.dart';
 import 'package:ecommerce_shop/ui/home_screen/home.dart';
 import 'package:ecommerce_shop/ui/profile/profile.dart';
+import 'package:ecommerce_shop/widget.dart/bottm_nav.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -89,50 +90,5 @@ Widget selectableIndex(int selectedIndex) {
       break;
     default:
       return myList[0];
-  }
-}
-
-class InkWellItem extends StatefulWidget {
-  final IconData iconData;
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const InkWellItem({
-    Key? key,
-    required this.iconData,
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  }) : super(key: key);
-
-  @override
-  _InkWellItemState createState() => _InkWellItemState();
-}
-
-class _InkWellItemState extends State<InkWellItem> {
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      customBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      onTap: widget.onTap,
-      child: Column(
-        children: [
-          Icon(
-            widget.iconData,
-            color: widget.isSelected ? Colors.blueAccent : Colors.black,
-          ),
-          SizedBox(height: 5),
-          Text(
-            widget.label,
-            style: TextStyle(
-              color: widget.isSelected ? Colors.blueAccent : Colors.black,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

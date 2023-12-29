@@ -31,9 +31,11 @@ class CartScreen extends StatelessWidget {
       },
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(onPressed: () {
-          BlocProvider.of<CartBloc>(context).add(CheckOutButton());
-        }, label: const Text('Check Out')),
+        floatingActionButton: FloatingActionButton.extended(
+            onPressed: () {
+              BlocProvider.of<CartBloc>(context).add(CheckOutButton());
+            },
+            label: const Text('Check Out')),
         backgroundColor: Colors.white,
         body: BlocBuilder<CartBloc, CartState>(
           buildWhen: (previous, current) {
@@ -50,10 +52,9 @@ class CartScreen extends StatelessWidget {
                               IconButton(
                                   onPressed: () => Navigator.pop(context),
                                   icon: const Icon(Icons.arrow_back)),
-                                
                               const Text('Cart'),
                               const SizedBox(
-                               width: 50,
+                                width: 50,
                               ),
                             ],
                           ),
@@ -179,41 +180,45 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 10 , right: 10),
+                            padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text('Order Info'),
-                                const SizedBox(height: 10,),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text('Subtotal'),
-                                    Text(calCulatetotal(box.values.toList())
-                                        .toString()),
+                                    Text(
+                                        '\$${calCulatetotal(box.values.toList())}'),
                                   ],
                                 ),
-                                const SizedBox(height: 10,),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text('Delivery Charge'),
-                                    Text(
+                                    Text('\$' +
                                         '${calCulatetotal(box.values.toList()) * 0.1} '),
                                   ],
                                 ),
-                                const SizedBox(height: 10,),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text('Total'),
-                                    Text((calCulatetotal(box.values.toList()) +
-                                            calCulatetotal(box.values.toList()) *
-                                                0.1)
-                                        .toString()),
+                                    Text(
+                                        '\$${calCulatetotal(box.values.toList()) + calCulatetotal(box.values.toList()) * 0.1}'),
                                   ],
                                 )
                               ],
@@ -238,5 +243,5 @@ int calCulatetotal(List<ProductData> product) {
   for (var element in product) {
     m += element.price * element.amount;
   }
-  return m ;
+  return m;
 }
