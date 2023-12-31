@@ -52,7 +52,7 @@ class CartScreen extends StatelessWidget {
                               IconButton(
                                   onPressed: () => Navigator.pop(context),
                                   icon: const Icon(Icons.arrow_back)),
-                              const Text('Cart'),
+                               Text('Cart', style: Theme.of(context).textTheme.titleLarge,),
                               const SizedBox(
                                 width: 50,
                               ),

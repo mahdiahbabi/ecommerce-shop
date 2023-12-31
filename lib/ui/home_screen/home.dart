@@ -1,8 +1,7 @@
 import 'dart:developer';
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_shop/data/categories.dart';
 import 'package:ecommerce_shop/data/repo/home_repo.dart';
-import 'package:ecommerce_shop/ui/cart/cart.dart';
 import 'package:ecommerce_shop/ui/home_screen/bloc/home_bloc.dart';
 import 'package:ecommerce_shop/ui/product/product.dart';
 import 'package:ecommerce_shop/utitlity/string.dart';
@@ -23,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context).textTheme;
     var withOfScreen = MediaQuery.of(context).size.width;
     var heightOfScreen = MediaQuery.of(context).size.height;
     double paddingSize = 8;
@@ -71,24 +71,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // welcom section
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, top: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Mahdi',
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text('welcome to stylish app',
-                                  style:
-                                      Theme.of(context).textTheme.bodySmall),
-                            ],
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 20, top: 10),
+                        //   child: Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       // Text(
+                        //       //   'Mahdi',
+                        //       //   style: Theme.of(context).textTheme.titleLarge,
+                        //       // ),
+                        //       // const SizedBox(
+                        //       //   height: 8,
+                        //       // ),
+                        //       // Text('welcome to stylish app',
+                        //       //     style: Theme.of(context).textTheme.bodySmall),
+                        //     ],
+                        //   ),
+                        // ),
 
                         //search section
 
@@ -97,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Container(
                               padding: EdgeInsets.only(left: paddingSize + 8),
                               width: withOfScreen * 0.78,
+                              height: 50,
                               child: TextField(
                                 decoration: InputDecoration(
                                     prefixIcon: const Icon(Icons.search),
@@ -107,14 +107,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             const SizedBox(
-                              width: 5,
+                              width: 17,
                             ),
                             IconButton(
                               padding: EdgeInsets.only(right: paddingSize),
                               onPressed: () {},
                               icon: Container(
-                                  width: 60,
-                                  height: 60,
+                                  width: 50,
+                                  height: 50,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: const Color.fromARGB(
@@ -137,15 +137,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Text(
                                 AppString.homeCategories,
-                                style: Theme.of(context).textTheme.bodyLarge,
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               TextButton(
-                                  onPressed: () {},
-                                  child: const Text(AppString.homeviewall,
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 143, 149, 158),
-                                      )))
+                                onPressed: () {},
+                                child: const Text(
+                                  AppString.homeviewall,
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 143, 149, 158),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -158,6 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Container(
                             width: withOfScreen,
                             height: 60,
+
                             // color: Colors.amber,
                             child: ListView.builder(
                               //TODO: completer data source for give categories and complete this section
@@ -166,39 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
                                 final item = state.allCategories[index];
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(12),
-                                    color: const Color.fromRGBO(
-                                        176, 182, 205, 0.612),
-                                  ),
-                                  margin: const EdgeInsets.only(left: 10),
-                                  width: 175,
-                                  height: 50,
-                                  child: Row(
-                                    children: [
-                                      ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: ImageLoadingService(
-                                              image: item.image,
-                                              boxFit: BoxFit.cover,
-                                              height: 60,
-                                              width: 55)),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      SizedBox(
-                                        width: 110,
-                                        child: Text(
-                                          state.allCategories[index].name,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                );
+                                return _CategoryItem(item: item , index: index);
                               },
                             ),
                           ),
@@ -238,8 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       border: Border.all(
                                           width: 1, color: Colors.black38),
                                       borderRadius: BorderRadius.circular(35),
-                                      color: const Color.fromARGB(
-                                          15, 143, 149, 155),
+                                      color: Colors.white,
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
@@ -291,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           padding:
                                               const EdgeInsets.only(left: 10),
                                           child: Text(
-                                            "${product.price.toString()} \$",
+                                            "\$${product.price.toString()} ",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium,
@@ -340,6 +310,52 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _CategoryItem extends StatelessWidget {
+  const _CategoryItem({
+    super.key,
+    required this.item, required this.index,
+  });
+final int index;
+  final Categories item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      margin: const EdgeInsets.only(left: 10),
+      width: 175,
+      height: 50,
+      child: Row(
+        children: [
+          ClipRRect(
+              borderRadius: const BorderRadius.all(
+                  Radius.circular(12)),
+              child: ImageLoadingService(
+                  image: item.image,
+                  boxFit: BoxFit.cover,
+                  height: 60,
+                  width: 55)),
+          const SizedBox(
+            width: 24,
+          ),
+          SizedBox(
+            width: 90,
+            child: Text(
+              item.name,
+              // style: theme.bodySmall,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          )
+        ],
       ),
     );
   }

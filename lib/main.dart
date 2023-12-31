@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
               fontSize: 15,
               color: LightColor.captionTextColor,
             )),
+            appBarTheme: const AppBarTheme(color:  Color.fromARGB(255, 247, 247, 247)),
         colorScheme: ColorScheme.fromSeed(
+          
             seedColor: Colors.black,
             background: LightColor.backgroundColor,
             secondary: Colors.blue),
