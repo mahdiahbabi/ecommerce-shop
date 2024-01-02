@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               physics: const BouncingScrollPhysics(),
                               itemBuilder: (context, index) {
                                 final item = state.allCategories[index];
-                                return _CategoryItem(item: item , index: index);
+                                return _CategoryItem(item: item, index: index);
                               },
                             ),
                           ),
@@ -196,84 +196,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               Product product = state.allProduct[index];
                               final String image =
                                   state.allProduct[index].images[index = 0];
-                              return InkWell(
-                                onTap: () => Navigator.of(context)
-                                    .push(CupertinoPageRoute(
-                                  builder: (context) =>
-                                      ProductScreen(productDetail: product),
-                                )),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          width: 1, color: Colors.black38),
-                                      borderRadius: BorderRadius.circular(35),
-                                      color: Colors.white,
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(35),
-                                            child: ImageLoadingService(
-                                              image: image,
-                                              boxFit: BoxFit.fill,
-                                              height: 200,
-                                              width: 200,
-                                            )),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            product.title,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium,
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            product.description,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            "\$${product.price.toString()} ",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
+                              return _PrudoctItems(
+                                  product: product, image: image);
                             },
                           ),
                         ),
@@ -315,12 +239,92 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+class _PrudoctItems extends StatelessWidget {
+  const _PrudoctItems({
+    super.key,
+    required this.product,
+    required this.image,
+  });
+
+  final Product product;
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => Navigator.of(context).push(CupertinoPageRoute(
+        builder: (context) => ProductScreen(productDetail: product),
+      )),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(width: 1, color: Colors.black38),
+            borderRadius: BorderRadius.circular(35),
+            color: Colors.white,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(35),
+                  child: ImageLoadingService(
+                    image: image,
+                    boxFit: BoxFit.fill,
+                    height: 200,
+                    width: 200,
+                  )),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  product.title,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: 1,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  product.description,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  "\$${product.price.toString()} ",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _CategoryItem extends StatelessWidget {
   const _CategoryItem({
     super.key,
-    required this.item, required this.index,
+    required this.item,
+    required this.index,
   });
-final int index;
+  final int index;
   final Categories item;
 
   @override
@@ -336,8 +340,7 @@ final int index;
       child: Row(
         children: [
           ClipRRect(
-              borderRadius: const BorderRadius.all(
-                  Radius.circular(12)),
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
               child: ImageLoadingService(
                   image: item.image,
                   boxFit: BoxFit.cover,
