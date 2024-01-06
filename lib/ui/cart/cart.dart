@@ -1,3 +1,4 @@
+import 'package:ecommerce_shop/data_base/data.dart';
 import 'package:ecommerce_shop/data_base/productdata.dart';
 import 'package:ecommerce_shop/ui/auth/auth.dart';
 import 'package:ecommerce_shop/ui/cart/bloc/cart_bloc.dart';
@@ -14,6 +15,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var box = Hive.box<ProductData>('product');
+    var authbox = Hive.box<Data>('auth');
     return BlocProvider<CartBloc>(
       create: (context) {
         var cartBloc = CartBloc();
@@ -255,7 +257,7 @@ class CartScreen extends StatelessWidget {
                                         BorderRadius.all(Radius.circular(15))),
                                 child: InkWell(
                                   onTap: () {
-                                    box.values.toList().isNotEmpty
+                                    authbox.values.toList().isNotEmpty
                                         ? BlocProvider.of<CartBloc>(context)
                                             .add(CheckOutButton())
                                         : Navigator.of(context)
