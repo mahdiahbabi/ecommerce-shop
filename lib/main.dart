@@ -56,11 +56,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: 
-      box.values.toList().isNotEmpty ? MainWarpper()
-      :
+      home: MainWarpper()
+      
       // MainWarpper(),
-       AuthScreen()
+      //  AuthScreen()
       // MainWarpper(),
     );
   }

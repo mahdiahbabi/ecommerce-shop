@@ -1,4 +1,5 @@
 import 'package:ecommerce_shop/data_base/productdata.dart';
+import 'package:ecommerce_shop/ui/auth/auth.dart';
 import 'package:ecommerce_shop/ui/cart/bloc/cart_bloc.dart';
 import 'package:ecommerce_shop/ui/profile/profile.dart';
 import 'package:ecommerce_shop/widget.dart/image_loading_servise.dart';
@@ -216,8 +217,10 @@ class CartScreen extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Text('Delivery Charge'),
-                                        Text('\$' +
-                                            '${calCulatetotal(box.values.toList()) * 0.1} '),
+                                        Text(
+                                          '\$'
+                                          '${calCulatetotal(box.values.toList()) * 0.1} ',
+                                        ),
                                       ],
                                     ),
                                     const SizedBox(
@@ -238,7 +241,7 @@ class CartScreen extends StatelessWidget {
                             ],
                           ),
                           Positioned(
-                            bottom: 0,
+                            bottom: 10,
                             left: 0,
                             right: 0,
                             child: Align(
@@ -252,8 +255,13 @@ class CartScreen extends StatelessWidget {
                                         BorderRadius.all(Radius.circular(15))),
                                 child: InkWell(
                                   onTap: () {
-                                    BlocProvider.of<CartBloc>(context)
-                                        .add(CheckOutButton());
+                                    box.values.toList().isNotEmpty
+                                        ? BlocProvider.of<CartBloc>(context)
+                                            .add(CheckOutButton())
+                                        : Navigator.of(context)
+                                            .push(CupertinoPageRoute(
+                                            builder: (context) => AuthScreen(),
+                                          ));
                                   },
                                   child: const Center(
                                       child: Text(

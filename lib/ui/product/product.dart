@@ -24,7 +24,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton.extended(backgroundColor: Colors.blueAccent,
         onPressed: () async {
           ProductData productData = ProductData(
             widget.productDetail.id,
