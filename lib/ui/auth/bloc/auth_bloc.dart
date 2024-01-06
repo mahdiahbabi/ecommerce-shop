@@ -1,8 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:ecommerce_shop/data/auth.dart';
 import 'package:ecommerce_shop/data/repo/auth_repo.dart';
 import 'package:ecommerce_shop/utitlity/appexception.dart';
-import 'package:ecommerce_shop/utitlity/httpcilent.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -12,7 +13,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<AuthEvent>((event, emit) async {
-      
+     
 
         try {
           if (event is BottonClicked && event.loginMode == 1) {
@@ -30,7 +31,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             emit(AuthSuccess(accessToken, refreshToken, 'success sign up'));
           }
         } catch (e) {
-          emit(AuthEror(AppException('please try again')));
+          
+          emit(AuthEror(AppException('wrong username or password')));
         }
       
     });

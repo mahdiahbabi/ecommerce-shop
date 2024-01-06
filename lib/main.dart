@@ -1,9 +1,7 @@
-import 'package:ecommerce_shop/data/data_source/auth_data_source.dart';
 import 'package:ecommerce_shop/data_base/data.dart';
 import 'package:ecommerce_shop/data_base/productdata.dart';
 import 'package:ecommerce_shop/mainwarpper.dart';
 import 'package:ecommerce_shop/theme/theme.dart';
-import 'package:ecommerce_shop/ui/auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

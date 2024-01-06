@@ -2,12 +2,13 @@ import 'package:ecommerce_shop/ui/cart/cart.dart';
 import 'package:ecommerce_shop/ui/home_screen/home.dart';
 import 'package:ecommerce_shop/ui/profile/profile.dart';
 import 'package:ecommerce_shop/widget.dart/bottm_nav.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final myList = [const HomeScreen(), const CartScreen(), ProfileScreen()];
+final myList = [const HomeScreen(), const CartScreen(), const ProfileScreen()];
 
 class MainWarpper extends StatefulWidget {
+  const MainWarpper({super.key});
+
   @override
   State<MainWarpper> createState() => _MainWarpperState();
 }
@@ -17,7 +18,7 @@ class _MainWarpperState extends State<MainWarpper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: MediaQuery.of(context).size.height * 0.09,
         child: Padding(
           padding: const EdgeInsets.all(8.0),

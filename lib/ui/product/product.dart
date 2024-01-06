@@ -1,7 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:developer';
-
 import 'package:ecommerce_shop/data_base/productdata.dart';
 import 'package:ecommerce_shop/widget.dart/image_loading_servise.dart';
 import 'package:expandable_text/expandable_text.dart';
@@ -24,7 +22,8 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(backgroundColor: Colors.blueAccent,
+      floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: Colors.blueAccent,
         onPressed: () async {
           ProductData productData = ProductData(
             widget.productDetail.id,
@@ -38,11 +37,10 @@ class _ProductScreenState extends State<ProductScreen> {
             1,
           );
           if (box.values.any((element) => element.id == productData.id)) {
-              var exsistingproducts = box.values.firstWhere(
-            (element) => productData.id == element.id,
-            
-          );
-             ProductData productDataUpdate = ProductData(
+            var exsistingproducts = box.values.firstWhere(
+              (element) => productData.id == element.id,
+            );
+            ProductData productDataUpdate = ProductData(
               widget.productDetail.id,
               widget.productDetail.title,
               widget.productDetail.price,
@@ -53,11 +51,10 @@ class _ProductScreenState extends State<ProductScreen> {
               widget.productDetail.categoryImage,
               exsistingproducts.amount + 1,
             );
-  await box.put(exsistingproducts.key, productDataUpdate);
-          }else{
- await box.add(productData);
+            await box.put(exsistingproducts.key, productDataUpdate);
+          } else {
+            await box.add(productData);
           }
-
 
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('success add to cart')));
@@ -74,9 +71,6 @@ class _ProductScreenState extends State<ProductScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
                 // image on top of page
                 Stack(
                   children: [
@@ -101,7 +95,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  Navigator.of(context);
+                                  Navigator.of(context).pop();
                                 },
                                 icon: const Icon(
                                   Icons.arrow_back,

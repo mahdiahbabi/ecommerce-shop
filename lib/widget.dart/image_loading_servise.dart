@@ -3,7 +3,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../data/product.dart';
 
 class ImageLoadingService extends StatelessWidget {
   const ImageLoadingService({
@@ -28,7 +27,7 @@ class ImageLoadingService extends StatelessWidget {
       },
       errorWidget: (context, url, error) {
         return const Icon(
-            Icons.face_2_sharp);
+            Icons.image_not_supported);
       },
     );
   }

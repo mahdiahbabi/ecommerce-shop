@@ -1,8 +1,8 @@
+// ignore_for_file: unnecessary_import
+
 import 'dart:developer';
-import 'package:ecommerce_shop/data/categories.dart';
 import 'package:ecommerce_shop/data/repo/home_repo.dart';
 import 'package:ecommerce_shop/ui/home_screen/bloc/home_bloc.dart';
-import 'package:ecommerce_shop/ui/product/product.dart';
 import 'package:ecommerce_shop/utitlity/string.dart';
 import 'package:ecommerce_shop/widget.dart/home_category_item.dart';
 import 'package:ecommerce_shop/widget.dart/home_product_item.dart';
@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/product.dart';
 import '../../widget.dart/app_bar_icon.dart';
-import '../../widget.dart/image_loading_servise.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context).textTheme;
     var withOfScreen = MediaQuery.of(context).size.width;
-    var heightOfScreen = MediaQuery.of(context).size.height;
     double paddingSize = 8;
     return BlocProvider<HomeBloc>(
       create: (context) {

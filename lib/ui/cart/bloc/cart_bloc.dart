@@ -16,7 +16,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc() : super(CartInitial()) {
     on<CartEvent>((event, emit) async {
       try {
-         var boxList = box.values.toList();
+        var boxList = box.values.toList();
         if (event is CheckOutButton) {
           if (boxList.first.accessToken.isNotEmpty) {
             emit(CartCheckOytSuccess());
