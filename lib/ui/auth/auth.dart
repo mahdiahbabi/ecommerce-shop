@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:ecommerce_shop/mainwarpper.dart';
+import 'package:ecommerce_shop/theme/theme.dart';
 import 'package:ecommerce_shop/ui/auth/bloc/auth_bloc.dart';
 import 'package:fk_toggle/fk_toggle.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,6 +39,7 @@ class AuthScreen extends StatelessWidget {
             return current is AuthInitial || current is AuthEror;
           },
           builder: (BuildContext context, state) {
+            var theme = Theme.of(context).textTheme;
             return Scaffold(
               body: SingleChildScrollView(
                 child: SafeArea(
@@ -56,13 +58,23 @@ class AuthScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Text('welcome'),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        'welcome',
+                        style: theme.titleLarge!
+                            .copyWith(fontWeight: FontWeight.w300),
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text('please enter your data to continue'),
+                      Text(
+                        'please enter your data to continue',
+                        style: theme.caption!.copyWith(fontSize: 16),
+                      ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 5,
+                        height: MediaQuery.of(context).size.height / 15,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15, right: 15),
@@ -106,12 +118,14 @@ class AuthScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text('Remember me'),
+                             Text('Remember me',style: theme.bodySmall!.apply(color: LightColor.authTextColor),),
                             FkToggle(
                               width: 30,
                               height: 30,
                               labels: const ['no', 'yes'],
-                              backgroundColor: Colors.grey,
+                              backgroundColor: Colors.white,
+                              selectedColor: Colors.green,
+                  
                             ),
                           ],
                         ),
@@ -119,19 +133,23 @@ class AuthScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Expanded(child: SizedBox()),
                       const Padding(
-                        padding: EdgeInsets.only(
-                            left: 15, right: 15, bottom: 15),
+                        padding:
+                            EdgeInsets.all(15),
                         child: Text(
                           'By connecting your account confirm that you agree with our Term and Condition',
                           textAlign: TextAlign.center,
                         ),
                       ),
+                      SizedBox(
+                        height: 15,
+                      ),
                       Container(
-                        width: double.infinity,
+                        width: MediaQuery.of(context).size.width / 1.5,
                         height: 50,
-                        color: Colors.purple,
+                        decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(35)),
                         child: InkWell(
                           onTap: () {
                             context.read<AuthBloc>().add(BottonClicked(
@@ -157,4 +175,3 @@ class AuthScreen extends StatelessWidget {
         ));
   }
 }
-

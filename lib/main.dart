@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
               TextStyle(color: Color.fromARGB(255, 143, 149, 158))),
           // backgroundColor: MaterialStatePropertyAll(Color.fromARGB(255, 63, 125, 218))
         )),
-        textTheme: const TextTheme(
+        textTheme:  const TextTheme(
             titleLarge: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w500,
@@ -45,7 +45,8 @@ class MyApp extends StatelessWidget {
             bodySmall: TextStyle(
               fontSize: 15,
               color: LightColor.captionTextColor,
-            )),
+            ),
+            ),
             appBarTheme: const AppBarTheme(color:  Color.fromARGB(255, 247, 247, 247)),
         colorScheme: ColorScheme.fromSeed(
           

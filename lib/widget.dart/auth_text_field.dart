@@ -23,22 +23,28 @@ class AuthTextField extends StatefulWidget {
 class _AuthTextFieldState extends State<AuthTextField> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      //TODO : prifix and suffix dont work
-      controller: widget.textEditingController,
-      keyboardType: widget.keyboardType,
-      decoration: InputDecoration(
-          suffixIcon:
-              widget.isUsername && widget.textEditingController.text.isNotEmpty
-                  ? widget.icon
-                  : null,
-          suffixIconColor: Colors.green,
-          labelText: widget.lable,
-          suffixText: widget.textEditingController.text.isNotEmpty
-              ? widget.suffixText
-              : '',
-          suffixStyle: TextStyle(color: Colors.green),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(35))),
+    var theme = Theme.of(context).textTheme;
+    return SizedBox(
+      height: 60,
+      child: TextField(
+        //TODO : prifix and suffix dont work
+        controller: widget.textEditingController,
+        keyboardType: widget.keyboardType,
+        decoration: InputDecoration(
+            suffixIcon: widget.isUsername &&
+                    widget.textEditingController.text.isNotEmpty
+                ? widget.icon
+                : null,
+            suffixIconColor: Colors.green,
+            labelText: widget.lable,
+            labelStyle: theme.bodySmall!.copyWith(fontSize: 14),
+            suffixText: widget.textEditingController.text.isNotEmpty
+                ? widget.suffixText
+                : '',
+            suffixStyle: const TextStyle(color: Colors.green),
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(35))),
+      ),
     );
   }
 }
