@@ -19,14 +19,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   @override
   Widget build(BuildContext context) {
-    authbox.values.isNotEmpty ? islogin.value = true 
-    : islogin.value = false;
+    authbox.values.isNotEmpty ? islogin.value = true : islogin.value = false;
     var theme = Theme.of(context).textTheme;
     return Scaffold(
       body: SafeArea(
           child: ValueListenableBuilder<bool>(
         valueListenable: islogin,
         builder: (context, value, child) {
+          final isloginuser = authbox.values.isNotEmpty;
           return Column(
             children: [
               SizedBox(
@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 10,
               ),
               Text(
-                islogin.value ? 'Mahdi' : 'gust',
+                isloginuser ? 'Mahdi' : 'gust',
                 style: theme.titleLarge!.copyWith(fontSize: 20),
               ),
               const SizedBox(
@@ -83,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 5,
                       ),
                       Text(
-                        islogin.value ? 'Log Out' : 'sign in',
+                        isloginuser ? 'Log Out' : 'sign in',
                         style: theme.bodyLarge!.copyWith(fontSize: 17),
                       )
                     ],
@@ -135,6 +135,7 @@ profileshoewDilog(BuildContext context, Box<Data> box) {
         actions: [
           TextButton(
               onPressed: () async {
+                
                 await box.clear();
                 Navigator.pop(context);
 

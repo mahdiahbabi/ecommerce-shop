@@ -5,7 +5,6 @@ import 'package:ecommerce_shop/widget.dart/image_loading_servise.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-
 import '../../data/product.dart';
 
 class ProductScreen extends StatefulWidget {
